@@ -12,9 +12,14 @@ def main():
     bootstrap._bootstrap(Path("samples/example-plugin/example-plugin.pex"))
 
     import msgpack
-    print("OK")
+    print("msgpack is available in the plugin as expected")
     """))
     interp.close()
+
+    try:
+        import msgpack  # noqa
+    except ImportError:
+        print("msgpack is not available in the main program as expected")
 
 
 if __name__ == "__main__":
